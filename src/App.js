@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from 'react';
 import { GifProvider } from './context/GifContext';
 import HomePage from './components/HomePage';
@@ -15,7 +16,7 @@ function App() {
       setGif({ ...gif, url });
     };
     fetchData();
-  }, [gif]);
+  }, []);
 
   const toggleGif = async () => {
     const url = await getRandomGif();
