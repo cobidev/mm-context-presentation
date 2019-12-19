@@ -1,47 +1,50 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import { GifProvider } from './context/GifContext';
 import HomePage from './components/HomePage';
-import axios from 'axios';
 
-function App() {
+const App = () => {
   const [gif, setGif] = useState({
     url: '',
     isVisible: false,
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const url = await getRandomGif();
-      setGif({ ...gif, url });
-    };
-    fetchData();
-  }, []);
-
-  const toggleGif = async () => {
-    const url = await getRandomGif();
-
-    setGif({
-      ...gif,
-      url: gif.isVisible ? url : gif.url,
-      isVisible: !gif.isVisible,
-    });
-  };
-
   const getRandomGif = async () => {
     const res = await axios.get(
-      `https://api.giphy.com/v1/gifs/random?api_key=${process.env.REACT_APP_GIPHY_API_KEY}&tag=Cat&rating=G`
+      `https://api.giphy.com/v1/gifs/random?api_key=gH7glaXpjdIJUfGdtE2GO5FSQzi09bbY&tag=Cat&rating=G`
     );
-    const data = await res.data.data.fixed_height_downsampled_url;
+    const url = await res.data.data.fixed_height_downsampled_url;
+    return url;
+  };
 
-    return data;
+  const handleToggleGif = async choice => {
+    let url;
+
+    switch (choice) {
+      case 'open':
+        url = await getRandomGif();
+        setGif({
+          ...gif,
+          url,
+          isVisible: true,
+        });
+        break;
+      case 'close':
+        setGif({
+          ...gif,
+          isVisible: false,
+        });
+        break;
+      default:
+        break;
+    }
   };
 
   return (
-    <GifProvider value={{ ...gif, toggleGif }}>
+    <GifProvider value={{ ...gif, handleToggleGif }}>
       <HomePage />
     </GifProvider>
   );
-}
+};
 
 export default App;

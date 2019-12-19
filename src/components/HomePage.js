@@ -3,30 +3,32 @@ import React, { useContext } from 'react';
 import GifContext from '../context/GifContext';
 
 const HomePage = () => {
-  const { url, isVisible, toggleGif } = useContext(GifContext);
+  const { url, isVisible, handleToggleGif } = useContext(GifContext);
 
   return (
     <div className="component-wrapper">
       <h1 className="title">Using hooks</h1>
       <div className="card">
         {isVisible ? (
-          <img className="gif" src={url} alt="Chuck Norris" />
+          <img className="gif" src={url} alt="Cat" />
         ) : (
           <p className="subtitle">
-            <span role="img" aria-label="Cat">
+            <span className="emoji" role="img" aria-label="Cat">
               🐈
-            </span>{' '}
-            Generator
+            </span>
           </p>
         )}
-        <button className="button" onClick={() => toggleGif()}>
+        <button
+          type="button"
+          className="button"
+          onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
+        >
           {isVisible ? `close` : `show me`}
         </button>
       </div>
     </div>
   );
 };
-
 export default HomePage;
 
 // === Class === //
@@ -38,23 +40,26 @@ export default HomePage;
 //     return (
 //       <GifConsumer>
 //         {props => {
-//           const { url, isVisible, toggleGif } = props;
+//           const { url, isVisible, handleToggleGif } = props;
 
 //           return (
 //             <div className="component-wrapper">
-//               <h1 className="title">Using consumer function</h1>
+//               <h1 className="title">Using Context Consumer</h1>
 //               <div className="card">
 //                 {isVisible ? (
-//                   <img className="gif" src={url} alt="Chuck Norris" />
+//                   <img className="gif" src={url} alt="Cat" />
 //                 ) : (
 //                   <p className="subtitle">
-//                     <span role="img" aria-label="Cat">
-//                       🐈
-//                     </span>{' '}
-//                     Generator
+//                     <span className="emoji" role="img" aria-label="Cat">
+//                       😼
+//                     </span>
 //                   </p>
 //                 )}
-//                 <button className="button" onClick={() => toggleGif()}>
+//                 <button
+//                   type="button"
+//                   className="button"
+//                   onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
+//                 >
 //                   {isVisible ? `close` : `show me`}
 //                 </button>
 //               </div>
@@ -65,7 +70,6 @@ export default HomePage;
 //     );
 //   }
 // }
-
 // export default HomePage;
 
 // === Class 2 === //
@@ -76,23 +80,26 @@ export default HomePage;
 //   static contextType = GifContext;
 
 //   render() {
-//     const { url, isVisible, toggleGif } = this.context;
+//     const { url, isVisible, handleToggleGif } = this.context;
 
 //     return (
 //       <div className="component-wrapper">
-//         <h1 className="title">Using contextType</h1>
+//         <h1 className="title">Using Context Consumer</h1>
 //         <div className="card">
 //           {isVisible ? (
-//             <img className="gif" src={url} alt="Chuck Norris" />
+//             <img className="gif" src={url} alt="Cat" />
 //           ) : (
 //             <p className="subtitle">
-//               <span role="img" aria-label="Cat">
-//                 🐈
-//               </span>{' '}
-//               Generator
+//               <span className="emoji" role="img" aria-label="Cat">
+//                 😸
+//               </span>
 //             </p>
 //           )}
-//           <button className="button" onClick={() => toggleGif()}>
+//           <button
+//             type="button"
+//             className="button"
+//             onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
+//           >
 //             {isVisible ? `close` : `show me`}
 //           </button>
 //         </div>
@@ -100,5 +107,4 @@ export default HomePage;
 //     );
 //   }
 // }
-
 // export default HomePage;

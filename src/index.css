@@ -39,6 +39,10 @@ code {
   font-size: 1.5rem;
 }
 
+.emoji {
+  font-size: 150px;
+}
+
 .button {
   border: none;
   background-color: rgb(53, 94, 132);
@@ -48,6 +52,10 @@ code {
   cursor: pointer;
   border-radius: 40px;
   text-transform: capitalize;
+}
+
+.button:focus {
+  outline: none;
 }
 
 .gif {
