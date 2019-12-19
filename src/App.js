@@ -30,7 +30,7 @@ function App() {
 
   const getRandomGif = async () => {
     const res = await axios.get(
-      'https://api.giphy.com/v1/gifs/random?api_key=gH7glaXpjdIJUfGdtE2GO5FSQzi09bbY&tag=Cat&rating=G'
+      `https://api.giphy.com/v1/gifs/random?api_key=${process.env.REACT_APP_GIPHY_API_KEY}&tag=Cat&rating=G`
     );
     const data = await res.data.data.fixed_height_downsampled_url;
 
