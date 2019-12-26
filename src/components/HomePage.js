@@ -1,76 +1,43 @@
-// === Functional === //
-import React, { useContext } from 'react';
-import GifContext from '../context/GifContext';
-
-const HomePage = () => {
-  const { url, isVisible, handleToggleGif } = useContext(GifContext);
-
-  return (
-    <div className="component-wrapper">
-      <h1 className="title">Using hooks</h1>
-      <div className="card">
-        {isVisible ? (
-          <img className="gif" src={url} alt="Cat" />
-        ) : (
-          <p className="subtitle">
-            <span className="emoji" role="img" aria-label="Cat">
-              🐈
-            </span>
-          </p>
-        )}
-        <button
-          type="button"
-          className="button"
-          onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
-        >
-          {isVisible ? `close` : `show me`}
-        </button>
-      </div>
-    </div>
-  );
-};
-export default HomePage;
-
 // === Class === //
-// import React, { Component } from 'react';
-// import { GifConsumer } from '../context/GifContext';
+import React, { Component } from 'react';
+import { GifConsumer } from '../context/GifContext';
 
-// class HomePage extends Component {
-//   render() {
-//     return (
-//       <GifConsumer>
-//         {props => {
-//           const { url, isVisible, handleToggleGif } = props;
+class HomePage extends Component {
+  render() {
+    return (
+      <GifConsumer>
+        {props => {
+          const { url, isVisible, handleToggleGif } = props;
 
-//           return (
-//             <div className="component-wrapper">
-//               <h1 className="title">Using Context Consumer</h1>
-//               <div className="card">
-//                 {isVisible ? (
-//                   <img className="gif" src={url} alt="Cat" />
-//                 ) : (
-//                   <p className="subtitle">
-//                     <span className="emoji" role="img" aria-label="Cat">
-//                       😼
-//                     </span>
-//                   </p>
-//                 )}
-//                 <button
-//                   type="button"
-//                   className="button"
-//                   onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
-//                 >
-//                   {isVisible ? `close` : `show me`}
-//                 </button>
-//               </div>
-//             </div>
-//           );
-//         }}
-//       </GifConsumer>
-//     );
-//   }
-// }
-// export default HomePage;
+          return (
+            <div className="component-wrapper">
+              <h1 className="title">Using Context Consumer</h1>
+              <div className="card">
+                {isVisible ? (
+                  <img className="gif" src={url} alt="Cat" />
+                ) : (
+                  <p className="subtitle">
+                    <span className="emoji" role="img" aria-label="Cat">
+                      😼
+                    </span>
+                  </p>
+                )}
+                <button
+                  type="button"
+                  className="button"
+                  onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
+                >
+                  {isVisible ? `close` : `show me`}
+                </button>
+              </div>
+            </div>
+          );
+        }}
+      </GifConsumer>
+    );
+  }
+}
+export default HomePage;
 
 // === Class 2 === //
 // import React, { Component } from 'react';
@@ -84,7 +51,7 @@ export default HomePage;
 
 //     return (
 //       <div className="component-wrapper">
-//         <h1 className="title">Using Context Consumer</h1>
+//         <h1 className="title">Using static contextType</h1>
 //         <div className="card">
 //           {isVisible ? (
 //             <img className="gif" src={url} alt="Cat" />
@@ -107,4 +74,37 @@ export default HomePage;
 //     );
 //   }
 // }
+// export default HomePage;
+
+// === Functional === //
+// import React, { useContext } from 'react';
+// import GifContext from '../context/GifContext';
+
+// const HomePage = () => {
+//   const { url, isVisible, handleToggleGif } = useContext(GifContext);
+
+//   return (
+//     <div className="component-wrapper">
+//       <h1 className="title">Using hooks</h1>
+//       <div className="card">
+//         {isVisible ? (
+//           <img className="gif" src={url} alt="Cat" />
+//         ) : (
+//           <p className="subtitle">
+//             <span className="emoji" role="img" aria-label="Cat">
+//               🐈
+//             </span>
+//           </p>
+//         )}
+//         <button
+//           type="button"
+//           className="button"
+//           onClick={() => (isVisible ? handleToggleGif('close') : handleToggleGif('open'))}
+//         >
+//           {isVisible ? `close` : `show me`}
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
 // export default HomePage;
